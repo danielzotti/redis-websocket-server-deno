@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.local
+    container_name: redis-websocket-server-deno_local
+    image: dz/redis-websocket-server-deno_local
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
