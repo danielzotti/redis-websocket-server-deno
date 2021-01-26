@@ -11,7 +11,7 @@ for await (const req of server) {
   if(req.url === '/') {
     req.respond({
       status: 200,
-      body: 'Welcome to Deno(n) server!'
+      body: 'Welcome to Deno server!'
     });
   }
 

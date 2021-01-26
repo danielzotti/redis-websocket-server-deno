@@ -9,15 +9,17 @@ RUN deno install -qAf --unstable https://deno.land/x/denon/denon.ts
 # Cache the dependencies as a layer (this is re-run only when deps.ts is modified).
 # Ideally this will download and compile _all_ external files used in main.ts.
 COPY deps.ts /app
-RUN deno cache deps.ts
+RUN deno cache --unstable deps.ts
 
 # These steps will be re-run upon each file change in your working directory:
 ADD . /app
 
 # Compile the main app so that it doesn't need to be compiled each startup/entry.
-RUN deno cache app.ts
+RUN deno cache --unstable server/app.ts
 
-#CMD [ "denon", "run", "--unstable", "--allow-net", "--allow-env", "--allow-read", "app.ts" ]
 
 # It uses its config file (denon.config.ts)
-CMD [ "denon", "dev" ]
+#CMD [ "denon", "dev" ]
+# Unfortunately denon restart doesn't work if used with config file : https://github.com/denosaurs/denon/issues/49
+
+CMD [ "denon", "run", "--unstable", "--allow-net", "--allow-env", "--allow-read", "server/app.ts" ]
