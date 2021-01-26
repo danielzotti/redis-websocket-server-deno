@@ -11,6 +11,10 @@ const config: DenonConfig = {
       cmd: 'deno run --unstable --allow-net --allow-read server/app.ts',
       desc: 'PRODUCTION: Run my server/app.ts file on port PORT',
     },
+    updateCache: {
+      cmd: 'deno cache --reload --unstable deps.ts',
+      desc: 'Reload cache in order to ease the development with intellisense'
+    }
   },
 };
 

@@ -6,6 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile.local
     container_name: redis-websocket-server-deno_local
+    env_file: .env
     image: dz/redis-websocket-server-deno_local
     ports:
       - 3000:3000
